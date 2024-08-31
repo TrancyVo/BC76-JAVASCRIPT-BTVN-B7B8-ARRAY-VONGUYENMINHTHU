@@ -2,18 +2,18 @@ let arrSoNguyen = [];
 
 //YC: Hiển thị số nguyên user nhập lên giao diện
 document.getElementById("btn").onclick = function () {
-  let soNguyen = document.getElementById("nhapSo").value * 1;
-  if (soNguyen == "") {
+  let nhapSoNguyen = document.getElementById("nhapSo").value;
+  if (nhapSoNguyen == "") {
     return alert(`Vui lòng nhập số Nguyên`);
   }
-
+  let soNguyen = parseFloat(nhapSoNguyen);
   if (Number.isInteger(soNguyen)) {
-    arrSoNguyen.push(` ${soNguyen}`);
+    arrSoNguyen.push(soNguyen);
   } else {
     return alert(`Giá trị không phải là số Nguyên`);
   }
 
-  document.querySelector(".ketQua").innerHTML = arrSoNguyen;
+  document.querySelector(".ketQua").innerHTML = arrSoNguyen.join(", ");
 };
 
 // C1: Tổng số nguyên dương trong mảng
@@ -71,20 +71,17 @@ document.getElementById("cau4").onclick = function () {
 
 // C5: Tìm số chẵn cuối cùng trong mảng (Nếu không có -> Hiển thị -1)
 document.getElementById("cau5").onclick = function () {
-  let soNguyenChanCuoi = 0;
   let arrSoNguyenChan = arrSoNguyen.filter((item, index) => {
     return item % 2 == 0;
   });
-  console.log(arrSoNguyenChan);
-  if (arrSoNguyenChan.length == 0) {
-    soNguyenChanCuoi = -1;
-  } else {
+  let soNguyenChanCuoi = -1;
+  let ketQua5 = document.querySelector(".ketQua5");
+  if (arrSoNguyenChan.length > 0) {
     soNguyenChanCuoi = arrSoNguyenChan[arrSoNguyenChan.length - 1];
+    ketQua5.innerHTML = `Số nguyên chẵn cuối cùng trong mảng: ${soNguyenChanCuoi} `;
+  } else {
+    ketQua5.innerHTML = `Kết quả: ${soNguyenChanCuoi} <br> Không có số nguyên chẵn trong mảng`;
   }
-
-  document.querySelector(
-    ".ketQua5"
-  ).innerHTML = `Số nguyên chẵn cuối cùng trong mảng: ${soNguyenChanCuoi}`;
 };
 
 // C6: Đổi chỗ 2 giá trị trong mảng
@@ -110,4 +107,97 @@ document.getElementById("cau6").onclick = function () {
   document.querySelector(
     ".ketQua6"
   ).innerHTML = `Mảng sau khi hoán đổi vị trí 2 giá trị: ${arrSoNguyen}`;
+};
+
+// C7: Sắp xếp mảng theo thứ tự tăng dần
+document.getElementById("cau7").onclick = function () {
+  arrSoNguyen.sort((a, b) => a - b);
+  // console.log(arrMangTangDan);
+  console.log(arrSoNguyen);
+
+  document.querySelector(
+    ".ketQua7"
+  ).innerHTML = `Mảng theo thứ tự tăng dần: ${arrSoNguyen}`;
+};
+
+// C8: Tìm số Nguyên Tố nhỏ nhất trong mảng (Nếu không có -> hiển thị -1)
+function timSoNguyenTo(number) {
+  if (number <= 1) {
+    return false;
+  }
+  if (number == 2) {
+    return true;
+  }
+  if (number % 2 == 0) {
+    return false;
+  }
+  for (let index = 3; index <= Math.sqrt(number); index += 2) {
+    if (number % index == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+document.getElementById("cau8").onclick = function () {
+  let arrSoNguyenTo = [];
+  for (let item of arrSoNguyen) {
+    if (timSoNguyenTo(item)) {
+      arrSoNguyenTo.push(item);
+    }
+  }
+  console.log(arrSoNguyenTo);
+  let soNguyenToDauTien = -1;
+  let ketQua8 = document.querySelector(".ketQua8");
+  if (arrSoNguyenTo.length > 0) {
+    soNguyenToDauTien = arrSoNguyenTo[0];
+    ketQua8.innerHTML = `Số nguyên tố đầu tiên trong Mảng: ${soNguyenToDauTien}`;
+  } else {
+    ketQua8.innerHTML = `Kết quả: ${soNguyenToDauTien} <br> Không có số nguyên tố trong mảng`;
+  }
+};
+
+//C9: Nhập vào mảng số thực, đếm số nguyên trong mảng
+let arrSoThuc = [];
+document.getElementById("btnSoThuc").onclick = function () {
+  let nhapSoThuc = document.getElementById("nhapSoThuc").value;
+  if (nhapSoThuc == "") {
+    return alert(`Vui lòng nhập số Thực`);
+  }
+  let soThuc = parseFloat(nhapSoThuc);
+  arrSoThuc.push(soThuc);
+  document.querySelector(".ketQuaSoThuc").innerHTML = arrSoThuc.join(", ");
+};
+document.getElementById("cau9").onclick = function () {
+  let demSoNguyen = 0;
+  for (let item of arrSoThuc) {
+    if (Number.isInteger(item)) {
+      demSoNguyen++;
+    }
+  }
+  document.querySelector(
+    ".ketQua9"
+  ).innerHTML = `Số lượng số nguyên trong mảng số thực: ${demSoNguyen}`;
+};
+
+//C10: SỐ DƯƠNG HAY SỐ ÂM NHIỀU HƠN
+document.getElementById("cau10").onclick = function () {
+  let arrSoDuong = [];
+  let arrSoAm = [];
+  for (let item of arrSoThuc) {
+    if (item < 0) {
+      arrSoAm.push(item);
+    } else if (item > 0) {
+      arrSoDuong.push(item);
+    }
+  }
+  console.log(arrSoAm);
+  console.log(arrSoDuong);
+  let ketQua10 = document.querySelector(".ketQua10");
+  if (arrSoAm.length > arrSoDuong.length) {
+    ketQua10.innerHTML = `Trong mảng số thực trên: số lượng số âm nhiều hơn số dương`;
+  } else if (arrSoDuong.length > arrSoAm.length) {
+    ketQua10.innerHTML = `Trong mảng số thực trên: số lượng số dương nhiều hơn số âm`;
+  } else {
+    ketQua10.innerHTML = `Trong mảng số thực trên: số lượng số dương bằng số âm`;
+  }
 };
