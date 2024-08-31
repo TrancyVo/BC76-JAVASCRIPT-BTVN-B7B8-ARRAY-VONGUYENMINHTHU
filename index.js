@@ -1,7 +1,7 @@
 let arrSoNguyen = [];
 
 //YC: Hiển thị số nguyên user nhập lên giao diện
-document.getElementById("btn").onclick = function () {
+document.getElementById("btnThem1").onclick = function () {
   let nhapSoNguyen = document.getElementById("nhapSo").value;
   if (nhapSoNguyen == "") {
     return alert(`Vui lòng nhập số Nguyên`);
@@ -13,6 +13,10 @@ document.getElementById("btn").onclick = function () {
     return alert(`Giá trị không phải là số Nguyên`);
   }
 
+  document.querySelector(".ketQua").innerHTML = arrSoNguyen.join(", ");
+};
+document.getElementById("btnXoa1").onclick = function () {
+  arrSoNguyen.pop();
   document.querySelector(".ketQua").innerHTML = arrSoNguyen.join(", ");
 };
 
@@ -158,7 +162,7 @@ document.getElementById("cau8").onclick = function () {
 
 //C9: Nhập vào mảng số thực, đếm số nguyên trong mảng
 let arrSoThuc = [];
-document.getElementById("btnSoThuc").onclick = function () {
+document.getElementById("btnThem2").onclick = function () {
   let nhapSoThuc = document.getElementById("nhapSoThuc").value;
   if (nhapSoThuc == "") {
     return alert(`Vui lòng nhập số Thực`);
@@ -167,6 +171,11 @@ document.getElementById("btnSoThuc").onclick = function () {
   arrSoThuc.push(soThuc);
   document.querySelector(".ketQuaSoThuc").innerHTML = arrSoThuc.join(", ");
 };
+document.getElementById("btnXoa2").onclick = function () {
+  arrSoThuc.pop();
+  document.querySelector(".ketQuaSoThuc").innerHTML = arrSoThuc.join(", ");
+};
+
 document.getElementById("cau9").onclick = function () {
   let demSoNguyen = 0;
   for (let item of arrSoThuc) {
