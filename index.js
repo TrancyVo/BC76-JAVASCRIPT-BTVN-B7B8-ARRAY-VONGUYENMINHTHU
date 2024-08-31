@@ -194,10 +194,10 @@ document.getElementById("cau10").onclick = function () {
   console.log(arrSoDuong);
   let ketQua10 = document.querySelector(".ketQua10");
   if (arrSoAm.length > arrSoDuong.length) {
-    ketQua10.innerHTML = `Trong mảng số thực trên: số lượng số âm nhiều hơn số dương`;
+    ketQua10.innerHTML = `Trong mảng số thực trên: Số lượng Số Âm > Số Dương`;
   } else if (arrSoDuong.length > arrSoAm.length) {
-    ketQua10.innerHTML = `Trong mảng số thực trên: số lượng số dương nhiều hơn số âm`;
+    ketQua10.innerHTML = `Trong mảng số thực trên: Số lượng Số Dương > Số Âm`;
   } else {
-    ketQua10.innerHTML = `Trong mảng số thực trên: số lượng số dương bằng số âm`;
+    ketQua10.innerHTML = `Trong mảng số thực trên: Số lượng Số Dương = Số Âm`;
   }
 };
